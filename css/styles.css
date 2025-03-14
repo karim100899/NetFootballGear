@@ -157,6 +157,19 @@ nav {
     justify-items: center;
 }
 
+.no-products {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+}
+
+.no-products p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
 .product-card {
     background-color: #C8C8C8;
     padding: 15px;
@@ -166,8 +179,16 @@ nav {
     transition: transform 0.3s ease;
 }
 
+/* Product card link styling */
+.product-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
 .product-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .product-image {

@@ -38,45 +38,25 @@
 
 <section class="products">
     <div class="product-grid">
-        <!-- Product 1 -->
-        <div class="product-card">
-            <div class="product-image">
-                <img src="images/lewa-shirt.png" alt="Lewandowski shirt">
+        <?php if ($products && count($products) > 0): ?>
+            <?php foreach ($products as $product): ?>
+                <div class="product-card">
+                    <div class="product-image">
+                        <a href="product.php?id=<?php echo htmlspecialchars($product['productID']); ?>">
+                            <img src="<?php echo htmlspecialchars($product['image']); ?>"
+                                 alt="<?php echo htmlspecialchars($product['title']); ?>">
+                    </div>
+                    <h3><?php echo htmlspecialchars($product['title']); ?></h3>
+                    <p class="price">€ <?php echo number_format($product['price'], 2, ',', '.'); ?></p>
+                    <p class="description"><?php echo htmlspecialchars($product['description']); ?></p>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="no-products">
+                <p>Er zijn momenteel geen producten beschikbaar.</p>
             </div>
-            <h3>Shirt Lewandowski</h3>
-            <p class="price">€ prijs</p>
-            <p class="description">Lewandowski shirt (jaar)<br>en (club)</p>
-        </div>
-
-        <!-- Product 2 -->
-        <div class="product-card">
-            <div class="product-image">
-                <img src="images/lewa-shirt.png" alt="Lewandowski shirt">
-            </div>
-            <h3>Shirt Lewandowski</h3>
-            <p class="price">€ prijs</p>
-            <p class="description">Lewandowski shirt (jaar)<br>en (club)</p>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="product-card">
-            <div class="product-image">
-                <img src="images/lewa-shirt.png" alt="Lewandowski shirt">
-            </div>
-            <h3>Shirt Lewandowski</h3>
-            <p class="price">€ prijs</p>
-            <p class="description">Lewandowski shirt (jaar)<br>en (club)</p>
-        </div>
-
-        <!-- Product 4 -->
-        <div class="product-card">
-            <div class="product-image">
-                <img src="images/lewa-shirt.png" alt="Lewandowski shirt">
-            </div>
-            <h3>Shirt Lewandowski</h3>
-            <p class="price">€ prijs</p>
-            <p class="description">Lewandowski shirt (jaar)<br>en (club)</p>
-        </div>
+        <?php endif; ?>
     </div>
 </section>
 
@@ -90,5 +70,6 @@
         </div>
     </div>
 </footer>
+<script src="js/main.js"></script>
 </body>
 </html>
