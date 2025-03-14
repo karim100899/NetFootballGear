@@ -4,52 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products NetFootbalGear</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../css/products.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
+    <header>
+        <nav>
             <div class="nav-links">
-                <a href="#" class="nav-link">Home</a>
-                <a href="#" class="nav-link">Products</a>
-                <a href="#" class="nav-link">Contact</a>
+                <a href="#" class="nav-item">Home</a>
+                <a href="#" class="nav-item">Products</a>
+                <a href="#" class="nav-item">Contact</a>
             </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Search...">
                 <button class="search-button">
                     <i class="fas fa-search"></i>
                 </button>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
-    <main class="container">
+    <main class="products">
         <div class="product-grid" id="productGrid">
             <!-- Products will be inserted here by JavaScript -->
         </div>
     </main>
 
     <footer class="footer">
-        <div class="container footer-content">
+        <div class="footer-content">
             <div class="footer-section">
-                <h3>Service & Contact</h3>
-                <ul>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Shipping</a></li>
-                    <li><a href="#">Returns</a></li>
-                </ul>
+                <h4>Service & Contact</h4>
             </div>
             <div class="footer-section">
-                <h3>Meld je aan</h3>
-                <div class="subscribe-form">
-                    <input type="email" placeholder="Email address" class="subscribe-input">
-                    <button class="subscribe-button">Subscribe</button>
+                <h4>Meld je aan</h4>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="../js/products.js"></script>
 </body>
 </html>
