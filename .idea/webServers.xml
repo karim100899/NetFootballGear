@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="c71f7dd8-802d-429f-8d99-3b4f05aab01c" name="ftp" url="https://100899.stu.sd-lab.nl/beroeps2/NetFootballGear/website">
+        <fileTransfer rootFolder="/httpdocs/beroeps2/NetFootballGear/website" host="web03.sd-lab.nl" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
