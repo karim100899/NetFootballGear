@@ -19,7 +19,7 @@ body {
 /* Header en navigatie */
 header {
     background-color: #1e2130;
-    padding: 35px 0;
+    padding: 20px 0;
     height: 100px;
 }
 
@@ -30,6 +30,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
+    height: 100%;
 }
 
 .nav-links {
@@ -48,6 +49,12 @@ nav {
     color: #ffd700;
 }
 
+.right-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 .search-container {
     display: flex;
     align-items: center;
@@ -57,6 +64,7 @@ nav {
     padding: 8px;
     border: none;
     width: 200px;
+    border-radius: 4px 0 0 4px;
 }
 
 .search-button {
@@ -64,6 +72,84 @@ nav {
     border: none;
     padding: 8px;
     cursor: pointer;
+    border-radius: 0 4px 4px 0;
+}
+
+/* User menu styling */
+.user-menu {
+    position: relative;
+}
+
+.user-button {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.user-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+    filter: invert(1) brightness(100%) sepia(0) saturate(0) hue-rotate(0deg);
+}
+
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    min-width: 180px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    z-index: 1000;
+    margin-top: 10px;
+    padding: 8px 0;
+}
+
+.dropdown-username {
+    color: #333;
+    font-weight: bold;
+    padding: 8px 16px;
+    margin: 0;
+    border-bottom: 1px solid #eee;
+}
+
+.dropdown-content::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 20px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid white;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.2s;
+}
+
+.dropdown-content a:hover {
+    background-color: #f5f5f5;
+}
+
+/* Show dropdown when user-dropdown is hovered */
+.user-dropdown:hover .dropdown-content {
+    display: block;
 }
 
 /* Mobile menu button */
@@ -227,18 +313,133 @@ nav {
 footer {
     background-color: #1e2130;
     color: white;
-    padding: 40px 20px;
+    padding: 50px 0 20px;
+    margin-top: 40px;
 }
 
 .footer-content {
     max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding: 0 20px;
 }
 
 .footer-section h4 {
+    color: white;
+    font-size: 18px;
     margin-bottom: 20px;
+    position: relative;
+}
+
+.footer-section h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 40px;
+    height: 2px;
+    background-color: #7abb7e;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #bbb;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 14px;
+}
+
+.footer-section ul li a:hover {
+    color: #7abb7e;
+}
+
+.footer-section p {
+    color: #bbb;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.newsletter-form {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.newsletter-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 14px;
+}
+
+.newsletter-button {
+    background-color: #7abb7e;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.newsletter-button:hover {
+    background-color: #619864;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-icon {
+    color: white;
+    font-size: 18px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.social-icon:hover {
+    background-color: #7abb7e;
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding: 20px 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-bottom p {
+    color: #bbb;
+    font-size: 14px;
+}
+
+.payment-methods {
+    display: flex;
+    gap: 10px;
+    font-size: 24px;
+    color: #bbb;
 }
 
 /* Responsive aanpassingen */
@@ -276,6 +477,10 @@ footer {
         right: 20px;
         width: 40%;
     }
+
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
@@ -302,6 +507,14 @@ footer {
 
     header {
         position: relative;
+    }
+
+    .right-section {
+        margin-left: auto;
+    }
+
+    .search-container {
+        display: none;
     }
 
     .hero {
@@ -349,8 +562,13 @@ footer {
     }
 
     .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-bottom {
         flex-direction: column;
-        gap: 30px;
+        gap: 15px;
+        text-align: center;
     }
 
     .nav {
@@ -364,6 +582,14 @@ footer {
 
     .search-input {
         width: 100%;
+    }
+
+    .user-menu {
+        margin-right: 50px; /* Ruimte voor hamburger menu */
+    }
+    
+    .username {
+        display: none; /* Verberg username op mobile */
     }
 }
 
@@ -420,4 +646,367 @@ footer {
     .shop-button:hover {
         transform: none;
     }
+}
+
+/* CSS voor zoekformulier */
+.search-container form {
+    display: flex;
+    width: 100%;
+}
+
+.search-input {
+    padding: 8px 12px;
+    border: none;
+    width: 200px;
+    border-radius: 4px 0 0 4px;
+    font-size: 14px;
+}
+
+.search-button {
+    background-color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+    color: #1e2130;
+}
+
+.search-button:hover {
+    background-color: #f5f5f5;
+}
+
+/* CSS voor zoekresultaten pagina */
+.search-results {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.search-header {
+    margin-bottom: 30px;
+}
+
+.search-header h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #1e2130;
+}
+
+.search-header p {
+    color: #666;
+    font-size: 16px;
+}
+
+.no-products {
+    grid-column: 1 / -1;
+    background-color: #f5f5f5;
+    padding: 30px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.no-products p {
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.no-products a {
+    color: #7abb7e;
+    text-decoration: none;
+}
+
+.no-products a:hover {
+    text-decoration: underline;
+}
+
+/* Styling voor auth buttons */
+.auth-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.auth-link {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.auth-link:first-child {
+    border: 1px solid white;
+}
+
+.auth-link:last-child {
+    background-color: #7abb7e;
+}
+
+.auth-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.auth-link:last-child:hover {
+    background-color: #619864;
+}
+
+/* iDEAL icoon styling */
+.ideal-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0066FF;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+/* Shopping Cart Styling */
+.cart-menu {
+    position: relative;
+    margin-right: 20px;
+}
+
+.cart-button {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0;
+    cursor: pointer;
+}
+
+.cart-icon {
+    width: 32px;
+    height: 32px;
+    filter: invert(1); /* Maakt de zwarte icoon wit */
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #7abb7e;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    min-width: 300px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    z-index: 1000;
+    margin-top: 10px;
+    padding: 15px;
+}
+
+.cart-dropdown-content::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 20px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid white;
+}
+
+.cart-dropdown:hover .cart-dropdown-content {
+    display: block;
+}
+
+.cart-dropdown-content h4 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.cart-items {
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.cart-item {
+    display: flex;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+
+.cart-item-image {
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.cart-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-title {
+    font-size: 14px;
+    margin: 0 0 5px;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}
+
+.cart-item-price {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.cart-quantity-form {
+    margin-right: 8px;
+}
+
+.cart-quantity-select {
+    padding: 2px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 12px;
+    width: 40px;
+    height: 24px;
+}
+
+.cart-remove-btn {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.cart-remove-btn:hover {
+    color: #e53935;
+    background-color: rgba(229, 57, 53, 0.1);
+}
+
+.cart-subtotal {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    text-align: right;
+}
+
+.cart-subtotal p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.cart-subtotal span {
+    font-weight: bold;
+}
+
+.cart-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.view-cart-btn, .checkout-btn {
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.view-cart-btn {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.checkout-btn {
+    background-color: #7abb7e;
+    color: white;
+}
+
+.view-cart-btn:hover {
+    background-color: #e5e5e5;
+}
+
+.checkout-btn:hover {
+    background-color: #619864;
+}
+
+.empty-cart-message {
+    text-align: center;
+    color: #666;
+    padding: 20px 0;
+}
+
+/* Responsive aanpassingen */
+@media (max-width: 768px) {
+    .cart-dropdown-content {
+        min-width: 250px;
+        right: -50px;
+    }
+    
+    .cart-dropdown-content::before {
+        right: 60px;
+    }
+}
+
+/* Business inquiry link styling */
+.business-link {
+    position: relative;
+    padding-left: 20px;
+}
+
+.business-link::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #7abb7e;
 }
