@@ -4,10 +4,6 @@
             <h4>Customer Service</h4>
             <ul>
                 <li><a href="contact.php">Contact Us</a></li>
-                <li><a href="shipping.php">Shipping & Delivery</a></li>
-                <li><a href="returns.php">Returns & Exchanges</a></li>
-                <li><a href="size-guide.php">Size Guide</a></li>
-                <li><a href="faq.php">FAQ</a></li>
                 <li><a href="business-inquiry.php" class="business-link">Business Inquiries</a></li>
             </ul>
         </div>
@@ -16,20 +12,15 @@
             <h4>About Us</h4>
             <ul>
                 <li><a href="about.php">Our Story</a></li>
-                <li><a href="stores.php">Stores</a></li>
                 <li><a href="careers.php">Careers</a></li>
-                <li><a href="sustainability.php">Sustainability</a></li>
-                <li><a href="press.php">Press</a></li>
             </ul>
         </div>
         
         <div class="footer-section">
             <h4>Legal Information</h4>
             <ul>
-                <li><a href="terms.php">Terms & Conditions</a></li>
                 <li><a href="https://www.glr.nl/privacy">Privacy Policy</a></li>
                 <li><a href="cookies.php">Cookie Policy</a></li>
-                <li><a href="sales-terms.php">Terms of Sale</a></li>
             </ul>
         </div>
         
