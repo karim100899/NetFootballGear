@@ -59,3 +59,9 @@ function logout() {
 function isGuest() {
     return !isset($_SESSION['user_id']);
 }
+
+function getUserById($pdo, $userId) {
+    $stmt = $pdo->prepare("SELECT * FROM users_netFootballGear WHERE userID = ?");
+    $stmt->execute([$userId]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}

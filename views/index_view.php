@@ -17,7 +17,7 @@
             Shop official shirts, accessories and more.<br>
             Be faster than your opponents and<br>
             score your favorites!</p>
-        <a href="#" class="shop-button">Shop now</a>
+        <a href="products_list.php" class="shop-button">Shop now</a>
     </div>
     <div class="hero-image">
         <img src="images/hero-img.png" alt="Football jerseys and ball" class="hero-img">

@@ -27,7 +27,7 @@
             <h4>Legal Information</h4>
             <ul>
                 <li><a href="terms.php">Terms & Conditions</a></li>
-                <li><a href="privacy.php">Privacy Policy</a></li>
+                <li><a href="https://www.glr.nl/privacy">Privacy Policy</a></li>
                 <li><a href="cookies.php">Cookie Policy</a></li>
                 <li><a href="sales-terms.php">Terms of Sale</a></li>
             </ul>
