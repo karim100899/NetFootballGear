@@ -2,7 +2,7 @@
 function getRandomProducts($pdo, $limit = 4) {
     try {
         // Query om random producten op te halen
-        $query = "SELECT productID, image, description, price, title 
+        $query = "SELECT productID, image, description, price, title, product_name 
                  FROM products 
                  ORDER BY RAND() 
                  LIMIT :limit";
@@ -21,7 +21,7 @@ function getRandomProducts($pdo, $limit = 4) {
 
 function getProductById($pdo, $productId) {
     try {
-        $query = "SELECT productID, image, description, price, title 
+        $query = "SELECT productID, image, description, price, title, product_name 
                  FROM products 
                  WHERE productID = :productId";
         
@@ -42,7 +42,7 @@ function searchProducts($pdo, $query) {
         $searchTerm = '%' . str_replace(' ', '%', $query) . '%';
         
         // SQL query die zoekt naar gedeeltelijke overeenkomsten in titel en beschrijving
-        $sql = "SELECT productID, image, description, price, title 
+        $sql = "SELECT productID, image, description, price, title, product_name 
                 FROM products 
                 WHERE title LIKE :searchTerm 
                 OR description LIKE :searchTerm";
@@ -55,5 +55,15 @@ function searchProducts($pdo, $query) {
     } catch (PDOException $e) {
         error_log("Error searching products: " . $e->getMessage());
         return false;
+    }
+}
+
+function getAllProducts($pdo) {
+    try {
+        $stmt = $pdo->query("SELECT productID, title, price, image, product_name FROM products");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Error fetching products: " . $e->getMessage());
+        return [];
     }
 }

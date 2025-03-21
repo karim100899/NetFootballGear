@@ -3,19 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results: <?php echo htmlspecialchars($searchQuery); ?> - Football Merchandise</title>
+    <title>Products - Football Merchandise</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 <?php include 'header.php'; ?>
 
-<section class="search-results">
-    <div class="search-header">
-        <h1>Search Results for "<?php echo htmlspecialchars($searchQuery); ?>"</h1>
-        <p>We found <?php echo count($products); ?> product(s) matching your search.</p>
-    </div>
-
+<section class="products">
+    <h1 class="products-h1">Our Products</h1>
     <div class="product-grid">
         <?php if ($products && count($products) > 0): ?>
             <?php foreach ($products as $product): ?>
@@ -28,19 +24,16 @@
                     <h3><?php echo htmlspecialchars($product['title']); ?></h3>
                     <p class="product-name"><?php echo isset($product['product_name']) ? htmlspecialchars($product['product_name']) : 'N/A'; ?></p>
                     <p class="price">€ <?php echo number_format($product['price'], 2, '.', ','); ?></p>
-<!--                    <p class="description">--><?php //echo htmlspecialchars($product['description']); ?><!--</p>-->
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
             <div class="no-products">
-                <p>No products found matching your search.</p>
-                <p>Try different search terms or <a href="index.php">return to homepage</a>.</p>
+                <p>No products available at this time.</p>
             </div>
         <?php endif; ?>
     </div>
 </section>
 
 <?php include 'footer.php'; ?>
-<script src="js/main.js"></script>
 </body>
-</html> 
+</html>
