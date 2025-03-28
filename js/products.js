@@ -126,4 +126,86 @@ document.addEventListener('DOMContentLoaded', function() {
         alert(`Thank you for subscribing with: ${email}`);
         emailInput.value = '';
     });
+
+    const productCards = document.querySelectorAll('.product-card');
+    const applyFiltersBtn = document.getElementById('apply-filters');
+    const resetFiltersBtn = document.getElementById('reset-filters');
+    const minPriceInput = document.getElementById('min-price');
+    const maxPriceInput = document.getElementById('max-price');
+    const productTypeCheckboxes = document.querySelectorAll('input[name="product-type"]');
+
+    // Apply filters when the button is clicked
+    applyFiltersBtn.addEventListener('click', applyFilters);
+
+    // Reset filters when reset button is clicked
+    resetFiltersBtn.addEventListener('click', resetFilters);
+
+    function applyFilters() {
+        const minPrice = parseFloat(minPriceInput.value) || 0;
+        const maxPrice = parseFloat(maxPriceInput.value) || Infinity;
+        const selectedTypes = Array.from(productTypeCheckboxes)
+            .filter(cb => cb.checked)
+            .map(cb => cb.value);
+
+        productCards.forEach(card => {
+            const price = parseFloat(card.dataset.price);
+            const type = card.dataset.type;
+            
+            const matchesPrice = price >= minPrice && (maxPrice === Infinity || price <= maxPrice);
+            const matchesType = selectedTypes.length === 0 || selectedTypes.includes(type);
+
+            if (matchesPrice && matchesType) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Check if any products are visible
+        const visibleProducts = Array.from(productCards).some(card => card.style.display !== 'none');
+        const noProductsMessage = document.querySelector('.no-products');
+        
+        if (!visibleProducts) {
+            if (!noProductsMessage) {
+                const message = document.createElement('div');
+                message.className = 'no-products';
+                message.innerHTML = '<p>No products match your filter criteria.</p>';
+                document.querySelector('.product-grid').appendChild(message);
+            }
+        } else {
+            if (noProductsMessage) {
+                noProductsMessage.remove();
+            }
+        }
+    }
+
+    function resetFilters() {
+        // Reset price inputs
+        minPriceInput.value = '';
+        maxPriceInput.value = '';
+
+        // Uncheck all product type checkboxes
+        productTypeCheckboxes.forEach(cb => cb.checked = false);
+
+        // Show all products
+        productCards.forEach(card => card.style.display = '');
+
+        // Remove no products message if it exists
+        const noProductsMessage = document.querySelector('.no-products');
+        if (noProductsMessage) {
+            noProductsMessage.remove();
+        }
+    }
+
+    // Add input validation for price fields
+    minPriceInput.addEventListener('input', function() {
+        if (this.value < 0) this.value = 0;
+    });
+
+    maxPriceInput.addEventListener('input', function() {
+        if (this.value < 0) this.value = 0;
+        if (minPriceInput.value && parseFloat(this.value) < parseFloat(minPriceInput.value)) {
+            this.value = minPriceInput.value;
+        }
+    });
 });
