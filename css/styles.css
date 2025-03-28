@@ -209,6 +209,7 @@ nav {
 
 .shop-button:hover {
     transform: scale(1.05);
+    text-decoration: none;
 }
 
 .hero-image {
