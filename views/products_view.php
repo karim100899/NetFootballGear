@@ -19,14 +19,25 @@
         <!-- Price Filter -->
         <div class="filter-section">
             <h3>Price Range</h3>
+            <div class="price-slider">
+                <div class="slider-container">
+                    <div class="slider-track"></div>
+                    <input type="range" id="price-range-min" class="price-range" min="0" max="200" value="0" step="1">
+                    <input type="range" id="price-range-max" class="price-range" min="0" max="200" value="200" step="1">
+                </div>
+            </div>
             <div class="price-inputs">
                 <div class="price-field">
                     <label for="min-price">From</label>
-                    <input type="number" id="min-price" name="min-price" min="0" placeholder="€ Min">
+                    <div class="input-with-symbol">
+                    € <input type="text" id="min-price" name="min-price" placeholder="Min">
+                    </div>
                 </div>
                 <div class="price-field">
                     <label for="max-price">To</label>
-                    <input type="number" id="max-price" name="max-price" min="0" placeholder="€ Max">
+                    <div class="input-with-symbol">
+                        € <input type="text" id="max-price" name="max-price" placeholder="Max">
+                    </div>
                 </div>
             </div>
         </div>
@@ -36,18 +47,19 @@
             <h3>Product Type</h3>
             <div class="product-type-filters">
                 <?php
-                $product_types = array_filter(array_unique(array_map(function($p) {
-                    return $p['product_type'] ?? 'Other';
-                }, $products)));
-                
+                $product_types = getUniqueProductTypes($pdo);
                 foreach ($product_types as $type):
+                    if (!empty($type)):
                 ?>
                     <div class="filter-checkbox">
                         <input type="checkbox" id="type-<?php echo htmlspecialchars($type); ?>" 
                                name="product-type" value="<?php echo htmlspecialchars($type); ?>">
                         <label for="type-<?php echo htmlspecialchars($type); ?>"><?php echo htmlspecialchars($type); ?></label>
                     </div>
-                <?php endforeach; ?>
+                <?php 
+                    endif;
+                endforeach; 
+                ?>
             </div>
         </div>
 
@@ -62,8 +74,8 @@
             <?php if ($products && count($products) > 0): ?>
                 <?php foreach ($products as $product): ?>
                     <div class="product-card" 
-                         data-price="<?php echo $product['price']; ?>"
-                         data-type="<?php echo htmlspecialchars($product['product_type'] ?? 'Other'); ?>">
+                         data-price="<?php echo htmlspecialchars(str_replace(',', '', $product['price'])); ?>"
+                         data-type="<?php echo htmlspecialchars($product['title']); ?>">
                         <div class="product-image">
                             <a href="product.php?id=<?php echo htmlspecialchars($product['productID']); ?>">
                                 <img src="<?php echo htmlspecialchars($product['image']); ?>" 
