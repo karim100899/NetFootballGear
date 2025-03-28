@@ -17,7 +17,6 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    var_dump($_POST); // Controleer of de gegevens worden verzonden
     try {
         // Start transaction
         $pdo->beginTransaction();

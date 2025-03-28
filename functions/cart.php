@@ -53,7 +53,6 @@ function updateCartItemQuantity($productId, $quantity) {
 }
 
 function getCartContents() {
-    var_dump($_SESSION['cart']);
     return isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 }
 

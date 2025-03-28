@@ -7,37 +7,37 @@ error_reporting(E_ALL);
 require_once 'functions/auth.php';
 ?>
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Over Ons - NetFootballGear</title>
-    <link rel="stylesheet" href="css/styles.css"> <!-- Zorg ervoor dat het pad naar je CSS-bestand correct is -->
+    <title>About Us - NetFootballGear</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Ensure the path to your CSS file is correct -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 <?php include 'views/header.php'; ?>
 
 <div class="container">
-    <h1>Over Ons</h1>
-    <p>Welkom bij NetFootballGear, uw nummer één bestemming voor alles wat met voetbal te maken heeft. Wij zijn gepassioneerd door de sport en streven ernaar om de beste producten en diensten aan te bieden aan onze klanten.</p>
+    <h1>About Us</h1>
+    <p>Welcome to NetFootballGear, your number one destination for everything related to football. We are passionate about the sport and strive to offer the best products and services to our customers.</p>
 
-    <h2>Onze Missie</h2>
-    <p>Onze missie is om voetbalfans en spelers van alle niveaus te voorzien van hoogwaardige uitrusting en accessoires. We geloven dat iedereen de kans moet krijgen om zijn of haar passie voor voetbal te beleven.</p>
+    <h2>Our Mission</h2>
+    <p>Our mission is to provide football fans and players of all levels with high-quality equipment and accessories. We believe that everyone should have the chance to experience their passion for football.</p>
 
-    <h2>Onze Geschiedenis</h2>
-    <p>NetFootballGear is opgericht in 2025 door een groep voetballiefhebbers die hun liefde voor de sport wilden delen. Sindsdien zijn we gegroeid en hebben we een breed scala aan producten toegevoegd, van schoenen tot kleding en accessoires.</p>
+    <h2>Our History</h2>
+    <p>NetFootballGear was founded in 2025 by a group of football enthusiasts who wanted to share their love for the sport. Since then, we have grown and added a wide range of products, from shoes to clothing and accessories.</p>
 
-    <h2>Waarom Kiezen Voor Ons?</h2>
+    <h2>Why Choose Us?</h2>
     <ul>
-        <li>Hoogwaardige producten</li>
-        <li>Uitstekende klantenservice</li>
-        <li>Snelle verzending</li>
-        <li>Tevreden klanten</li>
+        <li>High-quality products</li>
+        <li>Excellent customer service</li>
+        <li>Fast shipping</li>
+        <li>Satisfied customers</li>
     </ul>
 
-    <h2>Neem Contact Met Ons Op</h2>
-    <p>Als u vragen heeft of meer informatie wilt, neem dan gerust contact met ons op via onze <a href="contact.php">contactpagina</a>.</p>
+    <h2>Contact Us</h2>
+    <p>If you have any questions or would like more information, please feel free to contact us via our <a href="contact.php">contact page</a>.</p>
 </div>
 
 <?php include 'views/footer.php'; ?>

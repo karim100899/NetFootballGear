@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         // Check if the company already exists
-        $checkCompany = $pdo->prepare("SELECT companyID FROM company WHERE email = :email LIMIT 1");
+        $checkCompany = $pdo->prepare("SELECT companyID, userID FROM company WHERE email = :email LIMIT 1");
         $checkCompany->bindParam(':email', $email);
         $checkCompany->execute();
         $existingCompany = $checkCompany->fetch(PDO::FETCH_ASSOC);
@@ -55,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($existingCompany) {
             // Use existing company
             $companyID = $existingCompany['companyID'];
+            $hasAccount = !empty($existingCompany['userID']);
         } else {
             // Insert new company
             $insertCompany = $pdo->prepare("INSERT INTO company (companyName, contactName, email, phonenumber) VALUES (:company_name, :contact_name, :email, :phone)");
@@ -66,6 +67,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Get the last inserted companyID
             $companyID = $pdo->lastInsertId();
+            $hasAccount = false;
+        }
+
+        // Create seller account if it doesn't exist
+        $accountCredentials = null;
+        if (!$hasAccount) {
+            $accountCredentials = createSellerAccount($pdo, [
+                'email' => $email,
+                'companyName' => $companyName,
+                'companyID' => $companyID,
+                'phone' => $phone
+            ]);
+            
+            if (!$accountCredentials) {
+                throw new Exception('Failed to create seller account');
+            }
         }
 
         // Now you can safely insert into product_proposals
@@ -81,10 +98,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $insertProposal->bindParam(':product_name', $productName);
         $insertProposal->execute();
 
-        // Send email notification
-        $to = '100899@glr.nl'; // Replace with your email
-        $subject = 'New Product Proposal';
+        // Prepare email content
+        $to = $email;
+        $subject = 'Business Inquiry Confirmation';
         $body = "
+            <h1>Thank you for your business inquiry!</h1>
+            <p>We have received your product proposal and our team will review it shortly.</p>";
+
+        // Add account credentials if new account was created
+        if ($accountCredentials) {
+            $body .= "
+                <h2>Your Seller Account Details</h2>
+                <p>We've created a seller account for you with the following credentials:</p>
+                <p>Email: {$accountCredentials['email']}</p>
+                <p>Password: {$accountCredentials['password']}</p>
+                <p>Please log in to your seller dashboard to manage your products and view orders.</p>
+                <p><a href='https://100899.stu.sd-lab.nl/beroeps2/NetFootballGear/website/seller-dashboard.php'>Access Seller Dashboard</a></p>
+            ";
+        }
+
+        // Send email to seller
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        $headers .= "From: NetFootballGear <noreply@netfootballgear.com>" . "\r\n";
+        mail($to, $subject, $body, $headers);
+
+        // Send notification to admin
+        $adminEmail = '100899@glr.nl';
+        $adminSubject = 'New Product Proposal';
+        $adminBody = "
             <h1>New Product Proposal</h1>
             <p>Company: {$companyName}</p>
             <p>Contact: {$contactName}</p>
@@ -95,22 +137,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p>Image: <img src='{$imagePath}' alt='Product Image' /></p>
             <a href='https://100899.stu.sd-lab.nl/beroeps2/NetFootballGear/website/accept-proposal.php?id={$pdo->lastInsertId()}'>Accept Proposal</a>
         ";
-        $headers = "MIME-Version: 1.0" . "\r\n";
-        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-        $headers .= "From: <$email>" . "\r\n";
-
-        mail($to, $subject, $body, $headers);
+        mail($adminEmail, $adminSubject, $adminBody, $headers);
 
         // Commit the transaction
         $pdo->commit();
         $success = true;
 
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
         // Rollback on error
         $pdo->rollBack();
         error_log("Business inquiry submission error: " . $e->getMessage());
         $error = 'There was a problem with our system. Please try again later.';
-        // Optionally, you can also log the full exception for debugging
         error_log($e);
     }
 }

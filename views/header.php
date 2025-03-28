@@ -29,6 +29,11 @@
                         </button>
                         <div class="dropdown-content">
                             <p class="dropdown-username"><?php echo htmlspecialchars($_SESSION['username']); ?></p>
+                            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'seller'): ?>
+                                <a href="seller-dashboard.php" class="dropdown-item">
+                                    <i class="fas fa-chart-line"></i> Seller Dashboard
+                                </a>
+                            <?php endif; ?>
                             <a href="switch_account.php">Switch Account</a>
                             <a href="logout.php">Log Out</a>
                         </div>
@@ -43,3 +48,26 @@
         </div>
     </nav>
 </header>
+
+<style>
+/* Bestaande stijlen behouden */
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 8px 16px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: #f5f5f5;
+}
+
+.dropdown-item i {
+    color: #7abb7e;
+    font-size: 1.1em;
+}
+</style>

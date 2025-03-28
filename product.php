@@ -5,22 +5,20 @@ require_once 'functions/product.php';
 require_once 'functions/auth.php';
 require_once 'functions/cart.php';
 
-// Get product ID from URL
+// Controleer of er een product ID is meegegeven
 $productId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-// Get the product details
-$product = getProductById($pdo, $productId);
-
-// If no product found, redirect to products page
-if (!$product) {
-    header('Location: products.php');
+if ($productId <= 0) {
+    header('Location: index.php');
     exit;
 }
 
-// Get related products (you can implement this based on your needs)
-$relatedProducts = getFilteredProducts($pdo, [
-    'product_type' => [$product['title']], // Get products of same type
-    'exclude_id' => $productId // Exclude current product
-]);
+// Haal product details op
+$product = getProductById($pdo, $productId);
+
+if (!$product) {
+    header('Location: index.php');
+    exit;
+}
 
 include 'views/product_view.php'; 

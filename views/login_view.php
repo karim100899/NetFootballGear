@@ -6,6 +6,7 @@
     <title><?php echo htmlspecialchars($pageTitle); ?> - Football Merchandise</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="auth-container">
@@ -35,7 +36,10 @@
                     <input type="password" id="password" name="password" required>
                 </div>
                 
-                <button type="submit" class="auth-button">Log In</button>
+                <div class="form-actions">
+                    <button type="submit" class="auth-button">Log In</button>
+                    <a href="forgot-password.php" class="forgot-password">Forgot Password?</a>
+                </div>
             </form>
             
             <p class="auth-links">
@@ -44,5 +48,26 @@
             </p>
         </div>
     </div>
+
+    <style>
+    .form-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .forgot-password {
+        color: #666;
+        text-decoration: none;
+        text-align: center;
+        font-size: 0.9rem;
+        transition: color 0.2s;
+    }
+
+    .forgot-password:hover {
+        color: #7abb7e;
+    }
+    </style>
 </body>
 </html> 

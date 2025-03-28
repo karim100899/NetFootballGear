@@ -4,47 +4,46 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-
 require_once 'functions/auth.php';
 ?>
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookiebeleid - NetFootballGear</title>
-    <link rel="stylesheet" href="css/styles.css"> <!-- Zorg ervoor dat het pad naar je CSS-bestand correct is -->
+    <title>Cookie Policy - NetFootballGear</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Ensure the path to your CSS file is correct -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 <?php include 'views/header.php'; ?>
 
-    <div class="container">
-        <h1>Cookiebeleid</h1>
-        <p>Laat ons u informeren over ons gebruik van cookies op de NetFootballGear-website.</p>
+<div class="container">
+    <h1>Cookie Policy</h1>
+    <p>Let us inform you about our use of cookies on the NetFootballGear website.</p>
 
-        <h2>Wat zijn cookies?</h2>
-        <p>Cookies zijn kleine tekstbestanden die op uw computer of mobiele apparaat worden opgeslagen wanneer u een website bezoekt. Ze helpen de website om uw acties en voorkeuren (zoals inloggegevens, taal, lettergrootte en andere weergavevoorkeuren) gedurende een bepaalde tijd te onthouden.</p>
+    <h2>What are cookies?</h2>
+    <p>Cookies are small text files that are stored on your computer or mobile device when you visit a website. They help the website remember your actions and preferences (such as login details, language, font size, and other display preferences) over a period of time.</p>
 
-        <h2>Welke cookies gebruiken wij?</h2>
-        <ul>
-            <li><strong>Noodzakelijke cookies:</strong> Essentieel voor de werking van onze website.</li>
-            <li><strong>Functionele cookies:</strong> Onthouden uw keuzes en bieden verbeterde functies.</li>
-            <li><strong>Analytische cookies:</strong> Helpen ons te begrijpen hoe bezoekers onze website gebruiken.</li>
-            <li><strong>Advertentiecookies:</strong> Maken advertenties relevanter voor u.</li>
-        </ul>
+    <h2>What cookies do we use?</h2>
+    <ul>
+        <li><strong>Essential cookies:</strong> Necessary for the operation of our website.</li>
+        <li><strong>Functional cookies:</strong> Remember your choices and provide enhanced features.</li>
+        <li><strong>Analytical cookies:</strong> Help us understand how visitors use our website.</li>
+        <li><strong>Advertising cookies:</strong> Make advertisements more relevant to you.</li>
+    </ul>
 
-        <h2>Hoe kunt u cookies beheren?</h2>
-        <p>U kunt cookies beheren via uw browserinstellingen. De meeste webbrowsers bieden de mogelijkheid om cookies te blokkeren of te verwijderen. Raadpleeg de helpsectie van uw browser voor meer informatie.</p>
+    <h2>How can you manage cookies?</h2>
+    <p>You can manage cookies through your browser settings. Most web browsers offer the ability to block or delete cookies. Please refer to your browser's help section for more information.</p>
 
-        <h2>Wijzigingen in ons cookiebeleid</h2>
-        <p>We kunnen dit cookiebeleid van tijd tot tijd bijwerken. We raden u aan om deze pagina regelmatig te controleren op eventuele wijzigingen.</p>
+    <h2>Changes to our cookie policy</h2>
+    <p>We may update this cookie policy from time to time. We recommend that you check this page regularly for any changes.</p>
 
-        <h2>Contact</h2>
-        <p>Als u vragen heeft over ons cookiebeleid, kunt u contact met ons opnemen via:</p>
-        <p>Email: <a href="mailto:100899@glr.nl">100899@glr.nl</a></p>
-    </div>
+    <h2>Contact</h2>
+    <p>If you have any questions about our cookie policy, you can contact us at:</p>
+    <p>Email: <a href="mailto:100899@glr.nl">100899@glr.nl</a></p>
+</div>
 
-    <?php include 'views/footer.php'; ?>
+<?php include 'views/footer.php'; ?>
 </body>
 </html>
