@@ -1,5 +1,6 @@
+/* General styles for the dashboard */
 .seller-dashboard {
-    padding: 2rem 0;
+    padding: 2rem 1rem;
 }
 
 .dashboard-header {
@@ -61,11 +62,13 @@
     gap: 2rem;
 }
 
+/* Responsive adjustments for section headers and orders */
 .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
+    width: 100%; /* Ensure full width */
 }
 
 .add-product-btn {
@@ -100,7 +103,7 @@
 
 .product-card img {
     width: 100%;
-    height: 200px;
+    height: auto;
     object-fit: cover;
 }
 
@@ -170,10 +173,11 @@
     padding: 1.5rem;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 100%; /* Ensure full width */
 }
 
 .orders-table {
-    overflow-x: auto;
+    overflow-x: auto; /* Allow horizontal scrolling on small screens */
 }
 
 table {
@@ -206,20 +210,52 @@ td {
     border-radius: 5px;
 }
 
+/* Responsive adjustments */
 @media (max-width: 768px) {
+    .dashboard-header h1 {
+        font-size: 2rem; /* Smaller font size for mobile */
+    }
+
+    .dashboard-header p {
+        font-size: 1rem; /* Smaller font size for mobile */
+    }
+
     .stats-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Stack stats on small screens */
     }
 
     .products-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Stack products on small screens */
     }
 
     .orders-table {
-        font-size: 0.9rem;
+        font-size: 0.9rem; /* Adjust font size for tables */
     }
 
     th, td {
-        padding: 0.75rem;
+        padding: 0.75rem; /* Adjust padding for smaller screens */
     }
-} 
+
+    .add-product-btn {
+        font-size: 0.9rem; /* Adjust button font size */
+        padding: 0.4rem 0.8rem; /* Adjust button padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .stat-card {
+        padding: 1rem; /* Reduce padding for smaller screens */
+    }
+
+    .product-card {
+        margin: 0.5rem; /* Reduce margin for product cards */
+    }
+
+    .product-info h3 {
+        font-size: 1rem; /* Smaller product title */
+    }
+
+    .product-info .price {
+        font-size: 1rem; /* Smaller price font */
+    }
+}

@@ -60,8 +60,9 @@
                                 <div class="cart-cell remove">
                                     <form action="cart.php" method="POST">
                                         <input type="hidden" name="product_id" value="<?php echo $item['productId']; ?>">
-                                        <input type="hidden" name="action" value="remove">
-                                        <button type="submit" class="remove-btn" title="Remove item">Remove</button>
+                                        <button type="submit" class="remove-btn" title="Remove item">
+                                            <span class="remove-icon">×</span>
+                                        </button>
                                     </form>
                                 </div>
                             </div>
@@ -131,8 +132,17 @@ function incrementQuantity(container) {
 function decrementQuantity(container) {
     const input = container.querySelector('.quantity-input');
     const currentValue = parseInt(input.value);
+    
     if (currentValue > 1) {
         input.value = currentValue - 1;
+        container.closest('form').submit();
+    } else {
+        // If the quantity is 1, remove the item from the cart
+        const productIdInput = container.closest('form').querySelector('input[name="product_id"]');
+        const actionInput = container.closest('form').querySelector('input[name="action"]');
+        
+        // Set action to remove
+        actionInput.value = 'remove';
         container.closest('form').submit();
     }
 }
