@@ -50,20 +50,20 @@
                     <h2>Shipping Information</h2>
                     <form action="process_order.php" method="POST" class="shipping-form">
                         <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
-                        
-                        <div class="form-group">
-                            <label for="street">Street Address</label>
-                            <input type="text" id="street" name="street" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="house_number">House Number</label>
-                            <input type="text" id="house_number" name="house_number" required>
-                        </div>
 
                         <div class="form-group">
                             <label for="postal_code">Postal Code</label>
                             <input type="text" id="postal_code" name="postal_code" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="house_number">House Number</label>
+                            <input type="number" id="house_number" name="house_number" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="street">Street Address</label>
+                            <input type="text" id="street" name="street" required>
                         </div>
 
                         <div class="form-group">
@@ -72,7 +72,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="country">Country</label>
+                            <label for="country">Province</label>
                             <input type="text" id="country" name="country" required>
                         </div>
 
@@ -98,18 +98,18 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="street">Street Address</label>
-                            <input type="text" id="street" name="street" required>
+                            <label for="postal_code">Postal Code</label>
+                            <input type="text" id="postal_code" name="postal_code" required>
                         </div>
 
                         <div class="form-group">
                             <label for="house_number">House Number</label>
-                            <input type="text" id="house_number" name="house_number" required>
+                            <input type="number" id="house_number" name="house_number" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="postal_code">Postal Code</label>
-                            <input type="text" id="postal_code" name="postal_code" required>
+                            <label for="street">Street Address</label>
+                            <input type="text" id="street" name="street" required>
                         </div>
 
                         <div class="form-group">
@@ -118,7 +118,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="country">Country</label>
+                            <label for="country">Province</label>
                             <input type="text" id="country" name="country" required>
                         </div>
 
@@ -131,5 +131,110 @@
 
     <?php include 'footer.php'; ?>
     <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const postalCodeInput = document.getElementById('postal_code');
+            const houseNumberInput = document.getElementById('house_number');
+            const streetInput = document.getElementById('street');
+            const cityInput = document.getElementById('city');
+            const countryInput = document.getElementById('country');
+            const emailInput = document.getElementById('email');
+            const phoneInput = document.getElementById('phone');
+            const form = document.querySelector('form'); // Select the form for validation
+            const placeOrderButton = document.querySelector('.place-order-btn'); // Select the Place Order button
+
+            postalCodeInput.addEventListener('change', fetchAddress);
+            houseNumberInput.addEventListener('change', fetchAddress);
+
+            function fetchAddress() {
+                const postcode = postalCodeInput.value;
+                const huisnummer = houseNumberInput.value;
+
+                if (postcode && huisnummer) {
+                    const apiUrl = `https://api.pdok.nl/bzk/locatieserver/search/v3_1/free?fq=type:adres&q=${postcode} ${huisnummer}`;
+                    
+                    fetch(apiUrl)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data && data.response && data.response.docs.length > 0) {
+                                const address = data.response.docs[0];
+                                streetInput.value = address.straatnaam;
+                                cityInput.value = address.woonplaatsnaam;
+                                countryInput.value = address.provincienaam;
+
+                                // Enable the Place Order button if address is found
+                                placeOrderButton.disabled = false;
+                            } else {
+                                alert('Address not found. Please check your postcode and house number.');
+                                // Disable the Place Order button if address is not found
+                                placeOrderButton.disabled = true;
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching address:', error);
+                            alert('An error occurred while fetching the address.');
+                            // Disable the Place Order button on error
+                            placeOrderButton.disabled = true;
+                        });
+                } else {
+                    // Disable the Place Order button if postcode or house number is empty
+                    placeOrderButton.disabled = true;
+                }
+            }
+
+            // Form validation before submission
+            form.addEventListener('submit', function(event) {
+                let valid = true;
+
+                // Validate email if present
+                if (emailInput) {
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailPattern.test(emailInput.value)) {
+                        alert('Please enter a valid email address.');
+                        valid = false;
+                    }
+                }
+
+                // Validate phone number (only digits)
+                if (phoneInput) {
+                    const phonePattern = /^\d+$/; // Only digits
+                    if (!phonePattern.test(phoneInput.value)) {
+                        alert('Phone number must contain only digits.');
+                        valid = false;
+                    }
+                }
+
+                // Validate house number (only digits)
+                const houseNumberPattern = /^\d+$/; // Only digits
+                if (!houseNumberPattern.test(houseNumberInput.value)) {
+                    alert('House number must contain only digits.');
+                    valid = false;
+                }
+
+                // Validate postal code (basic check for format)
+                if (postalCodeInput.value.trim() === '') {
+                    alert('Postal code is required.');
+                    valid = false;
+                }
+
+                // Validate street, city, and country fields
+                if (streetInput.value.trim() === '' || cityInput.value.trim() === '' || countryInput.value.trim() === '') {
+                    alert('All address fields are required.');
+                    valid = false;
+                }
+
+                // Check if the Place Order button is disabled (address not found)
+                if (placeOrderButton.disabled) {
+                    alert('Please ensure that the address is valid before placing the order.');
+                    valid = false;
+                }
+
+                // Prevent form submission if validation fails
+                if (!valid) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
 </body>
 </html> 
